@@ -6,6 +6,7 @@ namespace LoginScreen
 {
     public partial class Form1 : Form
     {
+
         public Form1()
         {
             InitializeComponent();
@@ -29,7 +30,7 @@ namespace LoginScreen
             {
                 lbl_Fail.Text = "아이디와 비밀번호를 모두 입력해주세요.";
                 lbl_Fail.Visible = true; // 실패 메시지 표시
-                return; 
+                return;
             }
 
             // 2. 비밀번호 유효성 검사 (8자 이상, 숫자와 특수문자 필수)
@@ -51,12 +52,17 @@ namespace LoginScreen
             {
                 loginFailCount++;  // 실패 횟수 증가
 
-                // 4. 시도 제한 및 타이머 실행
+                // 4. 시도 제한 및 타이머 실행 (점진적 증가 로직 적용)
                 if (loginFailCount >= 3)
                 {
+                    // 실패 횟수에 따라 잠금 시간 설정
+                    if (loginFailCount == 3) lockTime = 10;
+                    else if (loginFailCount == 4) lockTime = 30;
+                    else lockTime = 60; // 5회 이상 실패 시 60초 고정
+
                     btnLogin.Enabled = false; // 버튼 잠금
                     loginTimer.Start();       // 타이머 시작
-                    lbl_Fail.Text = $"{lockTime}초 후 다시 시도하세요. (3회 실패)";
+                    lbl_Fail.Text = $"{lockTime}초 후 다시 시도하세요. (누적 실패: {loginFailCount}회)";
                 }
                 else
                 {
@@ -85,8 +91,10 @@ namespace LoginScreen
             {
                 loginTimer.Stop();
                 btnLogin.Enabled = true; // 버튼 다시 활성화
-                loginFailCount = 0;      // 횟수 초기화
-                lockTime = 10;           // 시간 초기화
+
+                // 점진적 증가를 유지하기 위해 loginFailCount는 초기화하지 않음 (로그인 성공 시에만 초기화)
+                // lockTime은 다음 잠금을 위해 기본값으로 리셋
+                lockTime = 10;
                 lbl_Fail.Text = "다시 시도할 수 있습니다."; // 메시지 업데이트
             }
         }
