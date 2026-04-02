@@ -38,13 +38,16 @@
             // 
             textBox_pwd.Location = new Point(24, 149);
             textBox_pwd.Name = "textBox_pwd";
+            textBox_pwd.PlaceholderText = "비밀번호";
             textBox_pwd.Size = new Size(292, 27);
             textBox_pwd.TabIndex = 0;
+            textBox_pwd.UseSystemPasswordChar = true;
             // 
             // textBox_id
             // 
             textBox_id.Location = new Point(24, 93);
             textBox_id.Name = "textBox_id";
+            textBox_id.PlaceholderText = "아이디";
             textBox_id.Size = new Size(292, 27);
             textBox_id.TabIndex = 1;
             // 
@@ -69,6 +72,7 @@
             btn_login.TabIndex = 3;
             btn_login.Text = "로그인";
             btn_login.UseVisualStyleBackColor = false;
+            btn_login.Click += btn_login_Click;
             // 
             // Form1
             // 
