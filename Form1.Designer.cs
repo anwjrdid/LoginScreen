@@ -88,7 +88,7 @@
             // 
             lbl_Fail.AutoSize = true;
             lbl_Fail.ForeColor = Color.Red;
-            lbl_Fail.Location = new Point(69, 222);
+            lbl_Fail.Location = new Point(59, 222);
             lbl_Fail.Name = "lbl_Fail";
             lbl_Fail.Size = new Size(272, 20);
             lbl_Fail.TabIndex = 6;

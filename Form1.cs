@@ -18,25 +18,25 @@ namespace LoginScreen
 
         private void btn_login_Click(object sender, EventArgs e)
         {
-            string myID = "suwon@suwon.ac.kr";
-            string myPW = "suwon123!"; // 예시 정답 (특수문자 포함)
+            string myID = "admin";
+            string myPW = "superman123!"; // 예시 정답 (특수문자 포함)
 
-            string inputID = txtID.Text;
-            string inputPW = txtPW.Text;
+            string inputID = txtID.Text; // 입력된 아이디
+            string inputPW = txtPW.Text; // 입력된 비밀번호
 
             // 1. 공백 확인
             if (string.IsNullOrWhiteSpace(inputID) || string.IsNullOrWhiteSpace(inputPW))
             {
                 lbl_Fail.Text = "아이디와 비밀번호를 모두 입력해주세요.";
-                lbl_Fail.Visible = true;
-                return;
+                lbl_Fail.Visible = true; // 실패 메시지 표시
+                return; 
             }
 
             // 2. 비밀번호 유효성 검사 (8자 이상, 숫자와 특수문자 필수)
             if (!IsPasswordValid(inputPW))
             {
                 lbl_Fail.Text = "PW는 8자 이상, 숫자와 특수문자를 포함해야 합니다.";
-                lbl_Fail.Visible = true;
+                lbl_Fail.Visible = true;  // 실패 메시지 표시
                 return;
             }
 
@@ -49,7 +49,7 @@ namespace LoginScreen
             }
             else
             {
-                loginFailCount++;
+                loginFailCount++;  // 실패 횟수 증가
 
                 // 4. 시도 제한 및 타이머 실행
                 if (loginFailCount >= 3)
@@ -60,7 +60,7 @@ namespace LoginScreen
                 }
                 else
                 {
-                    lbl_Fail.Text = $"정보가 틀렸습니다. ({loginFailCount}/3)";
+                    lbl_Fail.Text = $"정보가 틀렸습니다. ({loginFailCount}/3)";  // 실패 메시지 표시
                 }
                 lbl_Fail.Visible = true;
             }
@@ -70,8 +70,8 @@ namespace LoginScreen
         private bool IsPasswordValid(string pw)
         {
             bool hasMinLen = pw.Length >= 8;
-            bool hasNum = Regex.IsMatch(pw, @"[0-9]");
-            bool hasSpecial = Regex.IsMatch(pw, @"[!@#$%^&*]");
+            bool hasNum = Regex.IsMatch(pw, @"[0-9]"); // 숫자 체크
+            bool hasSpecial = Regex.IsMatch(pw, @"[!@#$%^&*]"); // 특수문자 체크 (필요에 따라 추가 가능)
             return hasMinLen && hasNum && hasSpecial;
         }
 
@@ -87,27 +87,27 @@ namespace LoginScreen
                 btnLogin.Enabled = true; // 버튼 다시 활성화
                 loginFailCount = 0;      // 횟수 초기화
                 lockTime = 10;           // 시간 초기화
-                lbl_Fail.Text = "다시 시도할 수 있습니다.";
+                lbl_Fail.Text = "다시 시도할 수 있습니다."; // 메시지 업데이트
             }
         }
 
         // --- 기타 기능 (엔터키, 지우기, 비번보기) ---
-        private void textBox_id_KeyDown(object sender, KeyEventArgs e)
+        private void textBox_id_KeyDown(object sender, KeyEventArgs e) // 아이디 입력창에서 엔터키
         {
-            if (e.KeyCode == Keys.Enter) { e.SuppressKeyPress = true; txtPW.Focus(); }
+            if (e.KeyCode == Keys.Enter) { e.SuppressKeyPress = true; txtPW.Focus(); } // 엔터키 입력 시 비밀번호 입력창으로 포커스 이동
         }
 
-        private void textBox_pwd_KeyDown(object sender, KeyEventArgs e)
+        private void textBox_pwd_KeyDown(object sender, KeyEventArgs e) // 비밀번호 입력창에서 엔터키
         {
-            if (e.KeyCode == Keys.Enter) { e.SuppressKeyPress = true; btnLogin.PerformClick(); }
+            if (e.KeyCode == Keys.Enter) { e.SuppressKeyPress = true; btnLogin.PerformClick(); } // 엔터키 입력 시 로그인 버튼 클릭 이벤트 실행
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        private void btnClear_Click(object sender, EventArgs e) // 지우기 버튼
         {
             txtID.Clear(); txtPW.Clear(); lbl_Fail.Visible = false; txtID.Focus();
         }
 
-        private void chkShowPW_CheckedChanged(object sender, EventArgs e)
+        private void chkShowPW_CheckedChanged(object sender, EventArgs e) // 비밀번호 보기 체크박스
         {
             txtPW.UseSystemPasswordChar = !chkShowPW.Checked;
         }
