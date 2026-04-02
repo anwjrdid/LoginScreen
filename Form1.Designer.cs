@@ -28,145 +28,130 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox_pwd = new TextBox();
-            textBox_id = new TextBox();
-            lbl_Login = new Label();
-            btn_login = new Button();
+            components = new System.ComponentModel.Container();
+            txtPW = new TextBox();
+            txtID = new TextBox();
+            lblAppName = new Label();
+            btnLogin = new Button();
             lbl_Fail = new Label();
-            tableLayoutPanel1 = new TableLayoutPanel();
             chkShowPW = new CheckBox();
             btnClear = new Button();
-            tableLayoutPanel1.SuspendLayout();
+            loginTimer = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
-            // textBox_pwd
+            // txtPW
             // 
-            textBox_pwd.Dock = DockStyle.Fill;
-            textBox_pwd.Location = new Point(3, 183);
-            textBox_pwd.Name = "textBox_pwd";
-            textBox_pwd.PlaceholderText = "비밀번호";
-            textBox_pwd.Size = new Size(336, 27);
-            textBox_pwd.TabIndex = 0;
-            textBox_pwd.UseSystemPasswordChar = true;
-            textBox_pwd.KeyDown += textBox_pwd_KeyDown;
+            txtPW.Font = new Font("맑은 고딕", 15F);
+            txtPW.Location = new Point(33, 172);
+            txtPW.Name = "txtPW";
+            txtPW.PlaceholderText = "비밀번호";
+            txtPW.Size = new Size(336, 41);
+            txtPW.TabIndex = 2;
+            txtPW.UseSystemPasswordChar = true;
+            txtPW.KeyDown += textBox_pwd_KeyDown;
             // 
-            // textBox_id
+            // txtID
             // 
-            textBox_id.Dock = DockStyle.Fill;
-            textBox_id.Location = new Point(3, 142);
-            textBox_id.Name = "textBox_id";
-            textBox_id.PlaceholderText = "아이디";
-            textBox_id.Size = new Size(336, 27);
-            textBox_id.TabIndex = 1;
-            textBox_id.KeyDown += textBox_id_KeyDown;
+            txtID.Font = new Font("맑은 고딕", 15F);
+            txtID.Location = new Point(33, 84);
+            txtID.Name = "txtID";
+            txtID.PlaceholderText = "아이디";
+            txtID.Size = new Size(336, 41);
+            txtID.TabIndex = 1;
+            txtID.KeyDown += textBox_id_KeyDown;
             // 
-            // lbl_Login
+            // lblAppName
             // 
-            lbl_Login.AutoSize = true;
-            lbl_Login.Dock = DockStyle.Fill;
-            lbl_Login.Font = new Font("맑은 고딕", 31.8000011F, FontStyle.Bold, GraphicsUnit.Point, 129);
-            lbl_Login.Location = new Point(3, 0);
-            lbl_Login.Name = "lbl_Login";
-            lbl_Login.Size = new Size(336, 139);
-            lbl_Login.TabIndex = 2;
-            lbl_Login.Text = "Login";
-            lbl_Login.TextAlign = ContentAlignment.MiddleCenter;
+            lblAppName.AutoSize = true;
+            lblAppName.Font = new Font("맑은 고딕", 31.8000011F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            lblAppName.Location = new Point(118, 9);
+            lblAppName.Name = "lblAppName";
+            lblAppName.Size = new Size(173, 72);
+            lblAppName.TabIndex = 0;
+            lblAppName.Text = "Login";
+            lblAppName.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // btn_login
+            // btnLogin
             // 
-            btn_login.BackColor = SystemColors.ActiveCaption;
-            btn_login.Dock = DockStyle.Fill;
-            btn_login.Font = new Font("맑은 고딕", 15F, FontStyle.Bold, GraphicsUnit.Point, 129);
-            btn_login.ForeColor = Color.DodgerBlue;
-            btn_login.Location = new Point(3, 274);
-            btn_login.Name = "btn_login";
-            btn_login.Size = new Size(336, 121);
-            btn_login.TabIndex = 3;
-            btn_login.Text = "로그인";
-            btn_login.UseVisualStyleBackColor = false;
-            btn_login.Click += btn_login_Click;
+            btnLogin.BackColor = SystemColors.ActiveCaption;
+            btnLogin.Font = new Font("맑은 고딕", 15F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            btnLogin.ForeColor = Color.DodgerBlue;
+            btnLogin.Location = new Point(33, 245);
+            btnLogin.Name = "btnLogin";
+            btnLogin.Size = new Size(160, 104);
+            btnLogin.TabIndex = 3;
+            btnLogin.Text = "로그인";
+            btnLogin.UseVisualStyleBackColor = false;
+            btnLogin.Click += btn_login_Click;
             // 
             // lbl_Fail
             // 
             lbl_Fail.AutoSize = true;
-            lbl_Fail.Dock = DockStyle.Fill;
             lbl_Fail.ForeColor = Color.Red;
-            lbl_Fail.Location = new Point(3, 216);
+            lbl_Fail.Location = new Point(69, 222);
             lbl_Fail.Name = "lbl_Fail";
-            lbl_Fail.Size = new Size(336, 55);
-            lbl_Fail.TabIndex = 4;
+            lbl_Fail.Size = new Size(272, 20);
+            lbl_Fail.TabIndex = 6;
             lbl_Fail.Text = "아이디 혹은 비밀번호가 맞지 않습니다.";
             lbl_Fail.TextAlign = ContentAlignment.MiddleCenter;
             lbl_Fail.Visible = false;
             // 
-            // tableLayoutPanel1
-            // 
-            tableLayoutPanel1.ColumnCount = 2;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 25F));
-            tableLayoutPanel1.Controls.Add(lbl_Login, 0, 0);
-            tableLayoutPanel1.Controls.Add(textBox_id, 0, 1);
-            tableLayoutPanel1.Controls.Add(lbl_Fail, 0, 3);
-            tableLayoutPanel1.Controls.Add(btn_login, 0, 4);
-            tableLayoutPanel1.Controls.Add(textBox_pwd, 0, 2);
-            tableLayoutPanel1.Controls.Add(chkShowPW, 1, 2);
-            tableLayoutPanel1.Controls.Add(btnClear, 1, 4);
-            tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(0, 0);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 5;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 41F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 55F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 127F));
-            tableLayoutPanel1.Size = new Size(367, 398);
-            tableLayoutPanel1.TabIndex = 5;
-            // 
             // chkShowPW
             // 
             chkShowPW.AutoSize = true;
-            chkShowPW.Dock = DockStyle.Fill;
-            chkShowPW.Location = new Point(345, 183);
+            chkShowPW.Location = new Point(273, 144);
             chkShowPW.Name = "chkShowPW";
-            chkShowPW.Size = new Size(19, 30);
+            chkShowPW.Size = new Size(96, 24);
             chkShowPW.TabIndex = 5;
-            chkShowPW.Text = "checkBox1";
+            chkShowPW.Text = "비번 확인";
             chkShowPW.UseVisualStyleBackColor = true;
             chkShowPW.CheckedChanged += chkShowPW_CheckedChanged;
             // 
             // btnClear
             // 
-            btnClear.Location = new Point(345, 274);
+            btnClear.BackColor = Color.MistyRose;
+            btnClear.Font = new Font("맑은 고딕", 15F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            btnClear.ForeColor = Color.Crimson;
+            btnClear.Location = new Point(209, 245);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(19, 121);
-            btnClear.TabIndex = 6;
+            btnClear.Size = new Size(160, 98);
+            btnClear.TabIndex = 4;
             btnClear.Text = "삭제";
-            btnClear.UseVisualStyleBackColor = true;
+            btnClear.UseVisualStyleBackColor = false;
             btnClear.Click += btnClear_Click;
+            // 
+            // loginTimer
+            // 
+            loginTimer.Interval = 1000;
+            loginTimer.Tick += loginTimer_Tick;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(367, 398);
-            Controls.Add(tableLayoutPanel1);
+            ClientSize = new Size(416, 380);
+            Controls.Add(lblAppName);
+            Controls.Add(txtID);
+            Controls.Add(btnClear);
+            Controls.Add(txtPW);
+            Controls.Add(lbl_Fail);
+            Controls.Add(chkShowPW);
+            Controls.Add(btnLogin);
             Name = "Form1";
             Text = "Login Screen";
-            tableLayoutPanel1.ResumeLayout(false);
-            tableLayoutPanel1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private TextBox textBox_pwd;
-        private TextBox textBox_id;
-        private Label lbl_Login;
-        private Button btn_login;
+        private TextBox txtPW;
+        private TextBox txtID;
+        private Label lblAppName;
+        private Button btnLogin;
         private Label lbl_Fail;
-        private TableLayoutPanel tableLayoutPanel1;
         private CheckBox chkShowPW;
         private Button btnClear;
+        private System.Windows.Forms.Timer loginTimer;
     }
 }
