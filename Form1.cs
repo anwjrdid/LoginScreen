@@ -27,5 +27,24 @@ namespace LoginScreen
                 lbl_Fail.Visible = true; // 에러 메시지 보여주기
             }
         }
+
+        private void textBox_id_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Enter 키가 눌렸는지 확인
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // '띵' 하는 비프음 방지
+                textBox_pwd.Focus(); // 패스워드 입력창으로 포커스 이동
+            }
+        }
+
+        private void textBox_pwd_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // 비프음 방지
+                btn_login.PerformClick(); // 로그인 버튼을 클릭한 것처럼 동작
+            }
+        }
     }
 }
