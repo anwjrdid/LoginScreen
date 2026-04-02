@@ -6,25 +6,44 @@ namespace LoginScreen
         {
             InitializeComponent();
         }
-
+        int loginFailCount = 0; // 로그인 실패 횟수를 저장하는 변수
         private void btn_login_Click(object sender, EventArgs e)
         {
             string myID = "suwon";
-            string myPW = "123456";
-
+            string myPW = "1234";
             string inputID = textBox_id.Text;
             string inputPW = textBox_pwd.Text;
 
+            // 1. 입력 문자 검증 (예: 공백 체크)
+            if (string.IsNullOrWhiteSpace(inputID) || string.IsNullOrWhiteSpace(inputPW))
+            {
+                lbl_Fail.Text = "아이디와 비밀번호를 모두 입력해주세요.";
+                lbl_Fail.Visible = true;
+                return; // 로직 중단
+            }
+
+            // 2. 로그인 성공/실패 판별
             if (inputID == myID && inputPW == myPW)
             {
-                // 로그인 성공 시
-                MessageBox.Show("로그인 성공!");
-                lbl_Fail.Visible = false; // 에러 메시지 숨기기
+                MessageBox.Show("로그인 성공!", "알림");
+                loginFailCount = 0; // 성공 시 횟수 초기화
+                lbl_Fail.Visible = false;
             }
             else
             {
-                // 로그인 실패 시 (메시지 박스 대신 라벨 사용)
-                lbl_Fail.Visible = true; // 에러 메시지 보여주기
+                loginFailCount++; // 실패 횟수 증가
+
+                // 3. 실패 횟수에 따른 처리
+                if (loginFailCount >= 3)
+                {
+                    lbl_Fail.Text = "3회 이상 실패! 더 이상 로그인할 수 없습니다.";
+                    btn_login.Enabled = false; // 버튼 비활성화
+                }
+                else
+                {
+                    lbl_Fail.Text = $"아이디 또는 비밀번호가 틀렸습니다. ({loginFailCount}/3)";
+                }
+                lbl_Fail.Visible = true;
             }
         }
 
