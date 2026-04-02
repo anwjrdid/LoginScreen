@@ -30,8 +30,9 @@
         {
             textBox_pwd = new TextBox();
             textBox_id = new TextBox();
-            Login_lbl = new Label();
+            lbl_Login = new Label();
             btn_login = new Button();
+            lbl_Fail = new Label();
             SuspendLayout();
             // 
             // textBox_pwd
@@ -51,15 +52,15 @@
             textBox_id.Size = new Size(292, 27);
             textBox_id.TabIndex = 1;
             // 
-            // Login_lbl
+            // lbl_Login
             // 
-            Login_lbl.AutoSize = true;
-            Login_lbl.Font = new Font("맑은 고딕", 31.8000011F, FontStyle.Bold, GraphicsUnit.Point, 129);
-            Login_lbl.Location = new Point(88, 9);
-            Login_lbl.Name = "Login_lbl";
-            Login_lbl.Size = new Size(173, 72);
-            Login_lbl.TabIndex = 2;
-            Login_lbl.Text = "Login";
+            lbl_Login.AutoSize = true;
+            lbl_Login.Font = new Font("맑은 고딕", 31.8000011F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            lbl_Login.Location = new Point(88, 9);
+            lbl_Login.Name = "lbl_Login";
+            lbl_Login.Size = new Size(173, 72);
+            lbl_Login.TabIndex = 2;
+            lbl_Login.Text = "Login";
             // 
             // btn_login
             // 
@@ -74,13 +75,25 @@
             btn_login.UseVisualStyleBackColor = false;
             btn_login.Click += btn_login_Click;
             // 
+            // lbl_Fail
+            // 
+            lbl_Fail.AutoSize = true;
+            lbl_Fail.ForeColor = Color.Red;
+            lbl_Fail.Location = new Point(33, 179);
+            lbl_Fail.Name = "lbl_Fail";
+            lbl_Fail.Size = new Size(272, 20);
+            lbl_Fail.TabIndex = 4;
+            lbl_Fail.Text = "아이디 혹은 비밀번호가 맞지 않습니다.";
+            lbl_Fail.Visible = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(336, 313);
+            Controls.Add(lbl_Fail);
             Controls.Add(btn_login);
-            Controls.Add(Login_lbl);
+            Controls.Add(lbl_Login);
             Controls.Add(textBox_id);
             Controls.Add(textBox_pwd);
             Name = "Form1";
@@ -93,7 +106,8 @@
 
         private TextBox textBox_pwd;
         private TextBox textBox_id;
-        private Label Login_lbl;
+        private Label lbl_Login;
         private Button btn_login;
+        private Label lbl_Fail;
     }
 }
